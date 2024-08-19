@@ -38,18 +38,34 @@ export default function App() {
         <InfoHeader month="Mai" year={2024} werk="Hannover" />
         {ListInput.map((input) => (
           <ListOfInput
-            names={input.names}
-            units={input.units}
-            header={input.header}
+          names={input.names}
+          units={input.units}
+          header={input.header}
           />
-        ))}
+          ))}
+
         <button
-          type="button"
+          type="submit"
           className="btn btn-secondary btn-lg position-absolute start-50 translate-middle-x"
-        >
+          onClick={handeClick}
+          >
           Submit
         </button>
       </div>
     </>
   );
+}
+
+const handeClick = async () =>{
+  fetch('https://ehsinformationsystem.azurewebsites.net/api/TestWriteDB?code=Y7yLemsnqHRXvrWaf1y-f_NZRdYexxNOVQYtU-cNUwbAAzFu_g7NfA%3D%3D', {
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    name: 'Basti'
+  })
+  })
+  return <button>test</button>
 }

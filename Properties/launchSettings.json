@@ -2,7 +2,7 @@
   "profiles": {
     "EhsInformationSystem": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7027",
+      "commandLineArgs": "--port 7198",
       "launchBrowser": false
     }
   }
