@@ -38,17 +38,17 @@ export default function App() {
         <InfoHeader month="Mai" year={2024} werk="Hannover" />
         {ListInput.map((input) => (
           <ListOfInput
-          names={input.names}
-          units={input.units}
-          header={input.header}
+            names={input.names}
+            units={input.units}
+            header={input.header}
           />
-          ))}
+        ))}
 
         <button
           type="submit"
           className="btn btn-secondary btn-lg position-absolute start-50 translate-middle-x"
           onClick={handeClick}
-          >
+        >
           Submit
         </button>
       </div>
@@ -56,16 +56,23 @@ export default function App() {
   );
 }
 
-const handeClick = async () =>{
-  fetch('https://ehsinformationsystem.azurewebsites.net/api/TestWriteDB?code=Y7yLemsnqHRXvrWaf1y-f_NZRdYexxNOVQYtU-cNUwbAAzFu_g7NfA%3D%3D', {
-  method: 'POST',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    name: 'Basti'
-  })
-  })
-  return <button>test</button>
-}
+const handeClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+  event.preventDefault();
+
+  const response = await fetch("https://ehsinformationapi.azure-api.net/EhsInfoSystem/CreateItem", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      ReportID: "DE01112023",
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Error: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  console.log("Success:", data);
+};
