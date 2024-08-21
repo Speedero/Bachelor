@@ -1,30 +1,20 @@
 import InfoHeader from "./components/InfoHeader";
 import ListOfInput from "./components/ListOfInput";
+import SubmitButton from "./components/SubmitButton";
+import { MonthlyReport } from "./models/MonthlyReport";
+import { Structure } from "./models/Structure";
 import "./styles/app.css";
 
 export default function App() {
-  const names = [
-    "Arbeitsstunden",
-    "Schlafstunden",
-    "Essensstunden",
-    "Freizeitstunden",
-    "Sportstunden",
-    "Familienstunden",
-    "Sonstige",
-  ];
-  const units = [
-    "Hours",
-    "Hours",
-    "Hours",
-    "Hours",
-    "Hours",
-    "Hours",
-    "Minutes",
-  ];
+
+  var structure = new Structure();
+  
   const ListInput = [
-    { header: "Test", names: names, units: units },
-    { header: "ABCS", names: names, units: units },
-    { header: "WirdSchon", names: names, units: units },
+    { header: "Health", names: structure.healthFields, units: structure.healthUnits },
+    { header: "Safety", names: structure.safetyFields, units: structure.safetyUnits },
+    { header: "Energy", names: structure.energyFields, units: structure.energyUnits },
+    { header: "Material", names: structure.materialFields, units: structure.materialUnits },
+    { header: "Waste", names: structure.wasteFields, units: structure.wasteUnits },
   ];
 
   return (
@@ -41,38 +31,12 @@ export default function App() {
             names={input.names}
             units={input.units}
             header={input.header}
+            report={structure.monthlyReport}
           />
         ))}
 
-        <button
-          type="submit"
-          className="btn btn-secondary btn-lg position-absolute start-50 translate-middle-x"
-          onClick={handeClick}
-        >
-          Submit
-        </button>
+        <SubmitButton />
       </div>
     </>
   );
 }
-
-const handeClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
-  event.preventDefault();
-
-  const response = await fetch("https://ehsinformationapi.azure-api.net/EhsInfoSystem/CreateItem", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      ReportID: "DE01112023",
-    }),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Error: ${response.statusText}`);
-  }
-
-  const data = await response.json();
-  console.log("Success:", data);
-};
