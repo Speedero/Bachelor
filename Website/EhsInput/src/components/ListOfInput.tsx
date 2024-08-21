@@ -1,5 +1,5 @@
 import InputField from "./InputField";
-import '../styles/inputList.css';
+import "../styles/inputList.css";
 import { MonthlyReport } from "../models/MonthlyReport";
 
 export interface ListInputProps {
@@ -9,12 +9,22 @@ export interface ListInputProps {
   report: MonthlyReport;
 }
 
-export default function ListOfInput({ header, names, units, report }: ListInputProps) {
+export default function ListOfInput({
+  header,
+  names,
+  units,
+  report,
+}: ListInputProps) {
   return (
     <>
       <h2 className="marginTopSub">{header}</h2>
       {names.map((name, index) => (
-        <InputField key={name} name={name} unit={units[index]} report={report}/>
+        <InputField
+          key={name}
+          name={name}
+          unit={units[index]}
+          report={report}
+        />
       ))}
     </>
   );

@@ -19,9 +19,9 @@ export default function ({ name, unit, report }: InputProps) {
 
 
   return (
-    <div className="mb-3 w-75 mx-auto marginTop">
-      <div className="input-group w-75 mx-auto">
-        <label className="input-group-text w-25">{name}</label>
+    <div className="mb-3 w-100 mx-auto marginTop">
+      <div className="input-group w-90 mx-auto">
+        <label className="input-group-text textWidth">{name}</label>
         <input
           title={name}
           className="form-control"
@@ -30,7 +30,7 @@ export default function ({ name, unit, report }: InputProps) {
           onChange={handleInputChange}
           aria-describedby="basic-addon3 basic-addon4"
         ></input>
-        <span className="input-group-text" id="basic-addon3">
+        <span className="input-group-text unitWidth" id="basic-addon3">
           {unit}
         </span>
         <Popup />

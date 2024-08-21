@@ -10,5 +10,14 @@
     display: block;
 }
 
+.textWidth {
+    width: 35%;
+}
+
+.unitWidth {
+    text-align: center;
+    width: 8%;
+}
+
 
 
