@@ -24,6 +24,7 @@ export default function ListOfInput({
           name={name}
           unit={units[index]}
           report={report}
+          category={header}
         />
       ))}
     </>

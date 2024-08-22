@@ -1,66 +1,68 @@
+import { Months } from "../enums/Months";
+import { Werks } from "../enums/Werks";
 import { MonthlyReport } from "./MonthlyReport";
 
 export class Structure {
   public healthFields = [
-    "Labour hours",
-    "Overhours worked",
-    "Working days",
-    "Working hours per day",
-    "Full Time Equivalent Tariff employees ",
-    "Full Time Equivalent Non-tariff employees",
-    "Sick days",
-    "Sick notifications",
-    "Long Term Sickness Leave",
-    "Planned absentism",
-    "Leaving FTE",
+    "labourHrs",
+    "overtimeHrs",
+    "workingDays",
+    "hrsPerDay",
+    "fullTimeEqvTarifEmp",
+    "fullTimeEqvNonTarifEmp",
+    "sickDays",
+    "sickNotifications",
+    "longTermSick",
+    "plannedAbsentism",
+    "leaving",
   ];
 
   public safetyFields = [
-    "Accidents which require first aid",
-    "Accidents which require medical treatment",
-    "Lost Time Incidents",
-    "Lost Days",
-    "Near Misses",
-    "Safety Trainings",
-    "Safety observations / tours / audits",
-    "Unsafe conditions",
-    "Unsafe acts",
-    "Fatalities",
-    "Serious Accidents/ Injuries",
-    "Follow-ups after LTI",
+    "accidentsWithFirstAid",
+    "accidentsWithMedicalTreatment",
+    "accidentsWithLostTime",
+    "lostDays",
+    "nearMisses",
+    "safetyTrainings",
+    "safetyAudits",
+    "unsafeConditions",
+    "unsafeActs",
+    "fatalities",
+    "seriousInjuries",
+    "fullowUps",
   ];
 
   public energyFields = [
-    "Natural Gas consumption",
-    "Light Fuel Oil consumption",
-    "Coal consumption",
-    "Car gas consumption",
-    "Car diesel consumption",
-    "Bio fuel consumption",
-    "Total Electricity purchased for Consumption",
-    "Share of total Electricity consumption from purchased renewable sources",
-    "Self-generated Electricity, heating, cooling, steam, which are consumed",
-    "Self-generated Electricity, heating, cooling, steam, which are sold",
+    "naturalGas",
+    "lightFuelOil",
+    "coal",
+    "carGasoline",
+    "carDiesel",
+    "bioFuel",
+    "electricityPurchased",
+    "sharePurchasedRenewable",
+    "selfGeneratedElectricityCosumed",
+    "selfGeneratedElectricitySold",
   ];
 
   public materialFields = [
-    "Raw materials consumption",
-    "Non-raw materials consumption",
-    "Renewable non raw material consumption",
-    "Renewable raw material consumption",
-    "Recycled input materials used",
-    "Recycled input materials used from own production",
+    "rawMaterialConsumption",
+    "nonRawMaterialConsumption",
+    "renewableNonRawMaterialConsumption",
+    "renewableRawMaterialConsumption",
+    "recycledInputMaterials",
+    "recycledInputMaterialsOwnPrudiction",
   ];
 
   public wasteFields = [
-    "Fabrication Waste",
-    "Production Waste",
-    "Other Non-Hazardous Waste",
-    "Reused non-hazardous Waste",
-    "Recycled non-hazardous Waste",
-    "Hazardous Waste",
-    "Reused hazardous Waste",
-    "Recycled hazardous Waste",
+    "fabricationWaste",
+    "productionWaste",
+    "otherNonHazardousWaste",
+    "reusedNonHazardousWaste",
+    "recycledNonHazardousWaste",
+    "hazardousWaste",
+    "reusedHazardousWaste",
+    "recycledHazardousWaste",
   ];
 
   public healthUnits = [
@@ -110,8 +112,9 @@ export class Structure {
   public wasteUnits = ["m²", "m²", "kg", "kg", "kg", "kg", "kg", "kg"];
 
   public monthlyReport: MonthlyReport = {
-    werk: "Hannover",
-    month: 5,
+    ReportID: "",
+    werk: Werks.Hannover,
+    month: Months.May,
     year: 2024,
     health: {
       labourHrs: 0,
@@ -170,5 +173,60 @@ export class Structure {
       reusedHazardousWaste: 0,
       recycledHazardousWaste: 0,
     },
+  };
+
+  public fields = {
+    labourHrs: "Labour hours",
+    overtimeHrs: "Overhours worked",
+    workingDays: "Working days",
+    hrsPerDay: "Working hours per day",
+    fullTimeEqvTarifEmp: "Full Time Equivalent Tariff employees",
+    fullTimeEqvNonTarifEmp: "Full Time Equivalent Non-tariff employees",
+    sickDays: "Sick days",
+    sickNotifications: "Sick notifications",
+    longTermSick: "Long Term Sickness Leave",
+    plannedAbsentism: "Planned absentism",
+    leaving: "Leaving FTE",
+    accidentsWithFirstAid: "Accidents which require first aid",
+    accidentsWithMedicalTreatment: "Accidents which require medical treatment",
+    accidentsWithLostTime: "Lost Time Incidents",
+    lostDays: "Lost Days",
+    nearMisses: "Near Misses",
+    safetyTrainings: "Safety Trainings",
+    safetyAudits: "Safety observations / tours / audits",
+    unsafeConditions: "Unsafe conditions",
+    unsafeActs: "Unsafe acts",
+    fatalities: "Fatalities",
+    seriousInjuries: "Serious Accidents/ Injuries",
+    fullowUps: "Follow-ups after LTI",
+    naturalGas: "Natural Gas consumption",
+    lightFuelOil: "Light Fuel Oil consumption",
+    coal: "Coal consumption",
+    carGasoline: "Car gas consumption",
+    carDiesel: "Car diesel consumption",
+    bioFuel: "Bio fuel consumption",
+    electricityPurchased: "Total Electricity purchased for Consumption",
+    sharePurchasedRenewable:
+      "Share of total Electricity consumption from purchased renewable sources",
+    selfGeneratedElectricityCosumed:
+      "Self-generated Electricity, heating, cooling, steam, which are consumed",
+    selfGeneratedElectricitySold:
+      "Self-generated Electricity, heating, cooling, steam, which are sold",
+    rawMaterialConsumption: "Raw materials consumption",
+    nonRawMaterialConsumption: "Non-raw materials consumption",
+    renewableNonRawMaterialConsumption:
+      "Renewable non raw material consumption",
+    renewableRawMaterialConsumption: "Renewable raw material consumption",
+    recycledInputMaterials: "Recycled input materials used",
+    recycledInputMaterialsOwnPrudiction:
+      "Recycled input materials used from own production",
+    fabricationWaste: "Fabrication Waste",
+    productionWaste: "Production Waste",
+    otherNonHazardousWaste: "Other Non-Hazardous Waste",
+    reusedNonHazardousWaste: "Reused non-hazardous Waste",
+    recycledNonHazardousWaste: "Recycled non-hazardous Waste",
+    hazardousWaste: "Hazardous Waste",
+    reusedHazardousWaste: "Reused hazardous Waste",
+    recycledHazardousWaste: "Recycled hazardous Waste",
   };
 }

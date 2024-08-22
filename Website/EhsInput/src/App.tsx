@@ -35,7 +35,7 @@ export default function App() {
           />
         ))}
 
-        <SubmitButton />
+        <SubmitButton report={structure.monthlyReport}/>
       </div>
     </>
   );
