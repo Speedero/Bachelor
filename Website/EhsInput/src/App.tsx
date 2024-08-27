@@ -1,5 +1,6 @@
 import InfoHeader from "./components/InfoHeader";
 import ListOfInput from "./components/ListOfInput";
+import createReportId from "./components/ReportIdCreate";
 import SubmitButton from "./components/SubmitButton";
 import { MonthlyReport } from "./models/MonthlyReport";
 import { Structure } from "./models/Structure";
@@ -25,7 +26,8 @@ export default function App() {
         alt="Forbo Logo"
       />
       <div className="container centerText marginTopAll">
-        <InfoHeader month="Mai" year={2024} werk="Hannover" />
+        <InfoHeader month="Mai" year={2024} werk="Hannover" report={structure.monthlyReport} />
+        <div className="mt-5">
         {ListInput.map((input) => (
           <ListOfInput
             names={input.names}
@@ -33,7 +35,8 @@ export default function App() {
             header={input.header}
             report={structure.monthlyReport}
           />
-        ))}
+          ))}
+        </div>
 
         <SubmitButton report={structure.monthlyReport}/>
       </div>

@@ -101,14 +101,14 @@ namespace Company.Function {
         }
 
         [Function("CreateItem")]
-        public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous,"get", "post")] HttpRequestData req,
+        public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData req,
                                                 FunctionContext executionContext)
         {
             try {
             
                 _logger.LogInformation("C# HTTP trigger function processed a request.");
 
-                var message = "ReportCreated";
+                var message = "{ \"message\": \"Created/Updated\"}";
 
                 var response = req.CreateResponse(HttpStatusCode.OK);
                 await response.WriteStringAsync(message);
@@ -122,7 +122,7 @@ namespace Company.Function {
 
                 var document = new MonthlyData {
                 
-                    id = System.Guid.NewGuid().ToString(),
+                    id = data.ReportID,
                     ReportID = data.ReportID,
                     month = data.month,
                     year = data.year,
@@ -187,7 +187,7 @@ namespace Company.Function {
                     };
 
                 // Dokument in CosmosDB speichern
-                await _container.CreateItemAsync(document, new PartitionKey(document.ReportID));
+                await _container.UpsertItemAsync<MonthlyData>(document, new PartitionKey(document.ReportID));
 
                 return response;
             }

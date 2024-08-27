@@ -66,6 +66,36 @@ export default function ({ name, unit, category, report }: InputProps) {
     return structure.fields[objKeyField]
   };
 
+  const getStartValue = (field: string, report: MonthlyReport): number => {
+    switch (category) {
+      case "Health":
+        type ObjectKeyHealth = keyof typeof report.health;
+        const objKeyHealth = field as ObjectKeyHealth;
+        setInputValue(report.health[objKeyHealth].toString());
+        return report.health[objKeyHealth];
+      case "Safety":
+        type ObjectKeySafety = keyof typeof report.safety;
+        const objKeySafety = field as ObjectKeySafety;
+        return report.safety[objKeySafety];
+      case "Energy":
+        type ObjectKeyEnergy = keyof typeof report.energy;
+        const objKeyEnergy = field as ObjectKeyEnergy;
+        return report.energy[objKeyEnergy];
+      case "Material":
+        type ObjectKeyMaterial = keyof typeof report.material;
+        const objKeyMaterial = field as ObjectKeyMaterial;
+        return report.material[objKeyMaterial];
+      case "Waste":
+        type ObjectKeyWaste = keyof typeof report.waste;
+        const objKeyWaste = field as ObjectKeyWaste;
+        return report.waste[objKeyWaste];
+      default:
+        throw new Error("Category not found");
+    }
+  };
+
+  // setInputValue(getStartValue(name, report).toString());
+
   return (
     <div className="mb-3 w-100 mx-auto marginTop">
       <div className="input-group w-90 mx-auto">
@@ -75,9 +105,9 @@ export default function ({ name, unit, category, report }: InputProps) {
           type="number"
           className="form-control"
           id={getFieldName(name)}
-          value={inputValue}
           onChange={handleInputChange}
           aria-describedby="basic-addon3 basic-addon4"
+          value={inputValue}
         ></input>
         <span className="input-group-text unitWidth" id="basic-addon3">
           {unit}
