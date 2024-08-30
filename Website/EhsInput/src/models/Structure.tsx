@@ -1,5 +1,6 @@
 import { Months } from "../enums/Months";
 import { Werks } from "../enums/Werks";
+import { InputFieldState } from "./InputFIeldState";
 import { MonthlyReport } from "./MonthlyReport";
 
 export class Structure {
@@ -228,5 +229,120 @@ export class Structure {
     hazardousWaste: "Hazardous Waste",
     reusedHazardousWaste: "Reused hazardous Waste",
     recycledHazardousWaste: "Recycled hazardous Waste",
+  };
+
+  public inputFieldSetter = {
+    labourHrs: new InputFieldState(0, () => {}),
+    overtimeHrs: new InputFieldState(0, () => {}),
+    workingDays: new InputFieldState(0, () => {}),
+    hrsPerDay: new InputFieldState(0, () => {}),
+    fullTimeEqvTarifEmp: new InputFieldState(0, () => {}),
+    fullTimeEqvNonTarifEmp: new InputFieldState(0, () => {}),
+    sickDays: new InputFieldState(0, () => {}),
+    sickNotifications: new InputFieldState(0, () => {}),
+    longTermSick: new InputFieldState(0, () => {}),
+    plannedAbsentism: new InputFieldState(0, () => {}),
+    leaving: new InputFieldState(0, () => {}),
+    accidentsWithFirstAid: new InputFieldState(0, () => {}),
+    accidentsWithMedicalTreatment: new InputFieldState(0, () => {}),
+    accidentsWithLostTime: new InputFieldState(0, () => {}),
+    lostDays: new InputFieldState(0, () => {}),
+    nearMisses: new InputFieldState(0, () => {}),
+    safetyTrainings: new InputFieldState(0, () => {}),
+    safetyAudits: new InputFieldState(0, () => {}),
+    unsafeConditions: new InputFieldState(0, () => {}),
+    unsafeActs: new InputFieldState(0, () => {}),
+    fatalities: new InputFieldState(0, () => {}),
+    seriousInjuries: new InputFieldState(0, () => {}),
+    fullowUps: new InputFieldState(0, () => {}),
+    naturalGas: new InputFieldState(0, () => {}),
+    lightFuelOil: new InputFieldState(0, () => {}),
+    coal: new InputFieldState(0, () => {}),
+    carGasoline: new InputFieldState(0, () => {}),
+    carDiesel: new InputFieldState(0, () => {}),
+    bioFuel: new InputFieldState(0, () => {}),
+    electricityPurchased: new InputFieldState(0, () => {}),
+    sharePurchasedRenewable: new InputFieldState(0, () => {}),
+    selfGeneratedElectricityCosumed: new InputFieldState(0, () => {}),
+    selfGeneratedElectricitySold: new InputFieldState(0, () => {}),
+    rawMaterialConsumption: new InputFieldState(0, () => {}),
+    nonRawMaterialConsumption: new InputFieldState(0, () => {}),
+    renewableNonRawMaterialConsumption: new InputFieldState(0, () => {}),
+    renewableRawMaterialConsumption: new InputFieldState(0, () => {}),
+    recycledInputMaterials: new InputFieldState(0, () => {}),
+    recycledInputMaterialsOwnPrudiction: new InputFieldState(0, () => {}),
+    fabricationWaste: new InputFieldState(0, () => {}),
+    productionWaste: new InputFieldState(0, () => {}),
+    otherNonHazardousWaste: new InputFieldState(0, () => {}),
+    reusedNonHazardousWaste: new InputFieldState(0, () => {}),
+    recycledNonHazardousWaste: new InputFieldState(0, () => {}),
+    hazardousWaste: new InputFieldState(0, () => {}),
+    reusedHazardousWaste: new InputFieldState(0, () => {}),
+    recycledHazardousWaste: new InputFieldState(0, () => {}),
+  };
+
+  public description = {
+    labourHrs:
+      "Actual labour hours for all employees with time registry plus contractual working hours for employees without time registry.  For a site it may happen that there are no actual working hours registered. In this case only consider the contractual working hours. All blue colour and blue colour indirect employees as wells as white collar employees contracted at the corresponding site.",
+    overtimeHrs:
+      "Calculation of hours worked by an employee that exceed those hours defined for a standard workweek. This can only be reported if labour hours are registered (actual labour hours - planned labour hours)  hours worked in excess of contractual working hours are considered regardless of compensation.",
+    workingDays: "the number of days worked per reported month.",
+    hrsPerDay:
+      "the contractual standard work hours per day. In case of deviating working hours per day the average is used.",
+    fullTimeEqvTarifEmp: "",
+    fullTimeEqvNonTarifEmp: "",
+    sickDays:
+      "number of registered sick days - absent days from work due to sickness.  Counted from the first day not appearing at work per employee.",
+    sickNotifications:
+      "number of  sick notifications from doctor that have been handed to HR department. All sick notifications independently, if new or a prolongation needs to count.",
+    longTermSick:
+      "Number of FTE on Long Term Sickness Leave (more than four calender weeks of absence)",
+    plannedAbsentism: "",
+    leaving:
+      "The leaving FTE is registered in the following month after leaving the company. Example: employee is leaving 15th of month 1, the employee is registered as leaving in month 2. As long as an employee is on the pay roll it is counted.",
+    accidentsWithFirstAid:
+      "Sub-category of total accidents: all work- related Accidents that cause Association book entries if this is requested and are self-medicated, but do not need further medical treatment. It does not include accidents on the way to work or back.a",
+    accidentsWithMedicalTreatment:
+      "Sub-category of total accidents: all work- related Accidents which are not causing lost days. It is an injury that requires  medical treatment. Only first aid is not sufficient. It does not include accidents on the way to work or back.",
+    accidentsWithLostTime:
+      "Sub-category of total accidents: All work- related Accidents which cause lost days. It leads to an operator's absence of at least 1 day (7 days per week to be considered). It does not include accidents on the way to work or back.",
+    lostDays:
+      "Number of lost days, which are defined as days lost [7 days per week], caused by people being absent due to an accident",
+    nearMisses:
+      "Number of incidents that could have caused  injury or death, but were narrowly avoided.",
+    safetyTrainings: "Hours of trainings 100% dedicated to Safety",
+    safetyAudits: "Number of dedicated safety observation tours or audits",
+    unsafeConditions:
+      "Number of observed and reported unsafe working conditions, i.e. violation of an accepted safe procedure which could permit the occurrence of an accident.",
+    unsafeActs:
+      "Number of observed and reported unsafe working acts, i.e. violation of an accepted safe procedure which could permit the occurrence of an accident.",
+    fatalities: "Work-related accident that leads to a fatality.",
+    seriousInjuries: "",
+    fullowUps:
+      "defined as that a Lost Time Accident has been discussed in the Divisional Board meeting",
+    naturalGas: "",
+    lightFuelOil: "",
+    coal: "",
+    carGasoline: "",
+    carDiesel: "",
+    bioFuel: "",
+    electricityPurchased: "",
+    sharePurchasedRenewable: "",
+    selfGeneratedElectricityCosumed: "",
+    selfGeneratedElectricitySold: "",
+    rawMaterialConsumption: "",
+    nonRawMaterialConsumption: "",
+    renewableNonRawMaterialConsumption: "",
+    renewableRawMaterialConsumption: "",
+    recycledInputMaterials: "",
+    recycledInputMaterialsOwnPrudiction: "",
+    fabricationWaste: "",
+    productionWaste: "",
+    otherNonHazardousWaste: "",
+    reusedNonHazardousWaste: "",
+    recycledNonHazardousWaste: "",
+    hazardousWaste: "",
+    reusedHazardousWaste: "",
+    recycledHazardousWaste: "",
   };
 }

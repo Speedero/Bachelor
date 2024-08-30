@@ -1,45 +1,18 @@
-import InfoHeader from "./components/InfoHeader";
-import ListOfInput from "./components/ListOfInput";
-import createReportId from "./components/ReportIdCreate";
-import SubmitButton from "./components/SubmitButton";
-import { MonthlyReport } from "./models/MonthlyReport";
-import { Structure } from "./models/Structure";
-import "./styles/app.css";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import InputWebsite from "./components/InputWebsite";
+import ManageWebsite from "./components/ManageWebsite";
 
 export default function App() {
-
-  var structure = new Structure();
-  
-  const ListInput = [
-    { header: "Health", names: structure.healthFields, units: structure.healthUnits },
-    { header: "Safety", names: structure.safetyFields, units: structure.safetyUnits },
-    { header: "Energy", names: structure.energyFields, units: structure.energyUnits },
-    { header: "Material", names: structure.materialFields, units: structure.materialUnits },
-    { header: "Waste", names: structure.wasteFields, units: structure.wasteUnits },
-  ];
-
   return (
     <>
-      <img
-        className="logoSize position-absolute top-0 start-0"
-        src="forboLogo.jpg"
-        alt="Forbo Logo"
-      />
-      <div className="container centerText marginTopAll">
-        <InfoHeader month="Mai" year={2024} werk="Hannover" report={structure.monthlyReport} />
-        <div className="mt-5">
-        {ListInput.map((input) => (
-          <ListOfInput
-            names={input.names}
-            units={input.units}
-            header={input.header}
-            report={structure.monthlyReport}
-          />
-          ))}
-        </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<InputWebsite />} />
+        <Route path="/manage" element={<ManageWebsite />} />
+      </Routes>
+    </BrowserRouter>
 
-        <SubmitButton report={structure.monthlyReport}/>
-      </div>
+    <Outlet/>
     </>
   );
 }

@@ -3,24 +3,27 @@ import React, { useState } from "react";
 import Popup from "./Popup";
 import { MonthlyReport } from "../models/MonthlyReport";
 import { Structure } from "../models/Structure";
+import { InputFieldState } from "../models/InputFIeldState";
 
 interface InputProps {
   name: string;
   unit: string;
   category: string;
-  report: MonthlyReport;
+  structure: Structure;
 }
 
-export default function ({ name, unit, category, report }: InputProps) {
-  const [inputValue, setInputValue] = useState("");
-
-  const structure: Structure = new Structure();
+export default function ({ name, unit, category, structure}: InputProps) {
+  const [inputValue, setInputValue] = useState(0);
+  
+  type ObjectKeySetter = keyof typeof structure.inputFieldSetter;
+  const objKeySetter = name as ObjectKeySetter;
+  structure.inputFieldSetter[objKeySetter] = new InputFieldState(inputValue, setInputValue);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+    setInputValue(Number(event.target.value));
     console.log("in der Methode setMonthlyData");
-    setMonthlyData(category, name, Number(event.target.value), report);
-    console.log(report);
+    setMonthlyData(category, name, Number(event.target.value), structure.monthlyReport);
+    console.log(structure.monthlyReport);
   };
 
   const setMonthlyData = (
@@ -64,34 +67,6 @@ export default function ({ name, unit, category, report }: InputProps) {
     type ObjectKeyFields = keyof typeof structure.fields;
     const objKeyField = field as ObjectKeyFields;
     return structure.fields[objKeyField]
-  };
-
-  const getStartValue = (field: string, report: MonthlyReport): number => {
-    switch (category) {
-      case "Health":
-        type ObjectKeyHealth = keyof typeof report.health;
-        const objKeyHealth = field as ObjectKeyHealth;
-        setInputValue(report.health[objKeyHealth].toString());
-        return report.health[objKeyHealth];
-      case "Safety":
-        type ObjectKeySafety = keyof typeof report.safety;
-        const objKeySafety = field as ObjectKeySafety;
-        return report.safety[objKeySafety];
-      case "Energy":
-        type ObjectKeyEnergy = keyof typeof report.energy;
-        const objKeyEnergy = field as ObjectKeyEnergy;
-        return report.energy[objKeyEnergy];
-      case "Material":
-        type ObjectKeyMaterial = keyof typeof report.material;
-        const objKeyMaterial = field as ObjectKeyMaterial;
-        return report.material[objKeyMaterial];
-      case "Waste":
-        type ObjectKeyWaste = keyof typeof report.waste;
-        const objKeyWaste = field as ObjectKeyWaste;
-        return report.waste[objKeyWaste];
-      default:
-        throw new Error("Category not found");
-    }
   };
 
   // setInputValue(getStartValue(name, report).toString());

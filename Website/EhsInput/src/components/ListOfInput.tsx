@@ -1,20 +1,21 @@
 import InputField from "./InputField";
 import "../styles/inputList.css";
-import { MonthlyReport } from "../models/MonthlyReport";
+import { Structure } from "../models/Structure";
 
 export interface ListInputProps {
   header: string;
   names: string[];
   units: string[];
-  report: MonthlyReport;
+  structure: Structure;
 }
 
 export default function ListOfInput({
   header,
   names,
   units,
-  report,
+  structure,
 }: ListInputProps) {
+
   return (
     <>
       <h2 className="marginTopSub">{header}</h2>
@@ -23,7 +24,7 @@ export default function ListOfInput({
           key={name}
           name={name}
           unit={units[index]}
-          report={report}
+          structure={structure}
           category={header}
         />
       ))}
