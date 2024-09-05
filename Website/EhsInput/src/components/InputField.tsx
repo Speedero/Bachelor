@@ -17,7 +17,9 @@ export default function ({ name, unit, category, structure}: InputProps) {
   
   type ObjectKeySetter = keyof typeof structure.inputFieldSetter;
   const objKeySetter = name as ObjectKeySetter;
-  structure.inputFieldSetter[objKeySetter] = new InputFieldState(inputValue, setInputValue);
+  structure.inputFieldSetter[objKeySetter].setInputValue = setInputValue;
+  structure.inputFieldSetter[objKeySetter].inputValue = inputValue;
+
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(Number(event.target.value));
@@ -64,9 +66,9 @@ export default function ({ name, unit, category, structure}: InputProps) {
   };
 
   const getFieldName = (field: string): string => {
-    type ObjectKeyFields = keyof typeof structure.fields;
+    type ObjectKeyFields = keyof typeof structure.inputFieldSetter;
     const objKeyField = field as ObjectKeyFields;
-    return structure.fields[objKeyField]
+    return structure.inputFieldSetter[objKeyField].name;
   };
 
   // setInputValue(getStartValue(name, report).toString());

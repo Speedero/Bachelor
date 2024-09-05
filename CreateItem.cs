@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 
 
-namespace Company.Function {
+namespace Company.Function.Monthly {
 
     public class MonthlyData
     {

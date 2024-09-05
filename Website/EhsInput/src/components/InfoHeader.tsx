@@ -1,7 +1,5 @@
-import { json } from "react-router-dom";
 import { Months } from "../enums/Months";
 import { Werks } from "../enums/Werks";
-import { MonthlyReport } from "../models/MonthlyReport";
 import "../styles/headers.css";
 import createReportId from "./ReportIdCreate";
 import { Structure } from "../models/Structure";
@@ -14,10 +12,50 @@ interface InfoHeaderProps {
 interface ReportReq {
   ReportID: string;
 }
+
+interface EmpReq {
+  EmpID: string;
+}
+
+interface Employee {
+  id: string;
+  EmpID: string;
+  name: string;
+  email: string;
+  manager: boolean;
+  werks: string[];
+}
 export default function InfoHeader({
   year,
   structure,
 }: InfoHeaderProps) {
+  var acckey = localStorage
+    .getItem("msal.account.keys")
+    ?.replace(/"/g, "")
+    .replace("[", "")
+    .replace("]", "");
+  var storage = localStorage.getItem(acckey as string);
+  var element = JSON.parse(storage as string);
+  console.log("Name: " + element.name);
+
+  const empReq: EmpReq = {
+    EmpID: "mdesrohd",
+  };
+
+  fetch("https://ehsinformationapi.azure-api.net/EhsInfoSystem/GetEmployee", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Ocp-Apim-Subscription-Key": `${import.meta.env.VITE_API_KEY}`,
+    },
+    body: JSON.stringify(empReq),
+  })
+    .then((response) => response.json())
+    .then((data: Employee): any => {
+      console.log(data);
+      return data;
+    });
+
   var putInsideField = (succesfull: boolean) => {
     if (succesfull) {
       for (let key in structure.monthlyReport.health) {
@@ -95,12 +133,11 @@ export default function InfoHeader({
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Ocp-Apim-Subscription-Key": "65fa6264eed447b493bd2bd0f6689c01",
+            "Ocp-Apim-Subscription-Key": `${import.meta.env.VITE_API_KEY}`,
           },
           body: JSON.stringify(reportReq),
         }
       );
-
       if (response.status === 204) {
         console.log("No Content for this ReportID");
         putInsideField(false);
@@ -112,7 +149,6 @@ export default function InfoHeader({
       } else {
         throw new Error(`Error: ${response.statusText}`);
       }
-
     } catch (error) {
       console.error("Error:", error);
     }
@@ -137,8 +173,9 @@ export default function InfoHeader({
           className="form-select w-25 ms-3"
           aria-label="Default select example"
           onChange={handleMonthChange}
+          defaultValue={0}
         >
-          <option selected>Monat auswählen</option>
+          <option>Monat auswählen</option>
           <option value={Months.January}>Januar</option>
           <option value={Months.February}>Februar</option>
           <option value={Months.March}>März</option>
@@ -160,8 +197,10 @@ export default function InfoHeader({
           className="form-select w-25 ms-3"
           aria-label="Default select example"
           onChange={handleChange}
+          defaultValue={""}
         >
-          <option selected>Werk auswählen</option>
+          <option>Werk auswählen</option>
+
           <option value={Werks.Hannover}>Hannover</option>
           <option value={Werks.Garbsen}>Garbsen</option>
           <option value={Werks.Wallbach}>Wallbach</option>

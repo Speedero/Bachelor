@@ -1,22 +1,14 @@
 export class InputFieldState {
     inputValue: number;
     setInputValue: React.Dispatch<React.SetStateAction<number>>;
+    name: string;
+    desctiption: string;
     
-    // test: [string, React.Dispatch<React.SetStateAction<string>>]
-    
-    constructor(inputValue: number, setInputValue: React.Dispatch<React.SetStateAction<number>>) {
+    constructor(inputValue: number, setInputValue: React.Dispatch<React.SetStateAction<number>>, name: string, desctiption: string) {
         this.inputValue = inputValue;
         this.setInputValue = setInputValue;
-        // this.test = [this.inputValue, this.setInputValue]
+        this.name = name;
+        this.desctiption = desctiption;
     }
 
-    public setValue(value: number) {
-        console.log("in der Methode setValue");
-        this.setInputValue(value);
-    }
-
-    public getValue(): number {
-        return this.inputValue;
-    }
-    
 }
