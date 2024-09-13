@@ -1,9 +1,8 @@
-import "../styles/inputField.css";
+import "../../styles/inputField.css";
 import React, { useState } from "react";
 import Popup from "./Popup";
-import { MonthlyReport } from "../models/MonthlyReport";
-import { Structure } from "../models/Structure";
-import { InputFieldState } from "../models/InputFIeldState";
+import { MonthlyReport } from "../../models/MonthlyReport";
+import { Structure } from "../../models/Structure";
 
 interface InputProps {
   name: string;
@@ -23,9 +22,7 @@ export default function ({ name, unit, category, structure}: InputProps) {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(Number(event.target.value));
-    console.log("in der Methode setMonthlyData");
     setMonthlyData(category, name, Number(event.target.value), structure.monthlyReport);
-    console.log(structure.monthlyReport);
   };
 
   const setMonthlyData = (
@@ -74,10 +71,10 @@ export default function ({ name, unit, category, structure}: InputProps) {
   // setInputValue(getStartValue(name, report).toString());
 
   return (
-    <div className="mb-3 w-100 mx-auto marginTop">
-      <div className="input-group w-90 mx-auto">
+    <div className="mb-3 w-100 mx-auto m-2">
+      <div className="input-group mx-auto">
         <label className="input-group-text textWidth">{getFieldName(name)}</label>
-        <input
+        <input 
           title={getFieldName(name)}
           type="number"
           className="form-control"
@@ -86,11 +83,10 @@ export default function ({ name, unit, category, structure}: InputProps) {
           aria-describedby="basic-addon3 basic-addon4"
           value={inputValue}
         ></input>
-        <span className="input-group-text unitWidth" id="basic-addon3">
+        <span className="input-group-text " id="basic-addon3">
           {unit}
         </span>
         <Popup />
-        {/* <img src='frage.png' className='questionmark ms-3' alt='Question'/> */}
       </div>
     </div>
   );

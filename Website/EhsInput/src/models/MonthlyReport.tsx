@@ -11,6 +11,8 @@ export class MonthlyReport {
   werk: Werks = Werks.Hannover;
   month: Months = Months.May;
   year: number = 0;
+  lastChangeDate: string = "";
+  lastChangeTime: string = "";
   health: MonthlyHealth;
   safety: MonthlySafety;
   energy: MonthlyEnergy;

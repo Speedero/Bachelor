@@ -1,8 +1,8 @@
-import { Months } from "../enums/Months";
-import { Werks } from "../enums/Werks";
-import "../styles/headers.css";
+import { Months } from "../../enums/Months";
+import { Werks } from "../../enums/Werks";
+import "../../styles/headers.css";
 import createReportId from "./ReportIdCreate";
-import { Structure } from "../models/Structure";
+import { Structure } from "../../models/Structure";
 
 interface InfoHeaderProps {
   year: number;
@@ -25,10 +25,7 @@ interface Employee {
   manager: boolean;
   werks: string[];
 }
-export default function InfoHeader({
-  year,
-  structure,
-}: InfoHeaderProps) {
+export default function InfoHeader({ year, structure }: InfoHeaderProps) {
   var acckey = localStorage
     .getItem("msal.account.keys")
     ?.replace(/"/g, "")
@@ -53,7 +50,7 @@ export default function InfoHeader({
     .then((response) => response.json())
     .then((data: Employee): any => {
       console.log(data);
-      return data;
+      // return data;
     });
 
   var putInsideField = (succesfull: boolean) => {
@@ -115,7 +112,6 @@ export default function InfoHeader({
   var handleChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
     try {
       structure.monthlyReport.werk = event.target.value as Werks;
-      console.log(structure.monthlyReport.werk);
       var reportId = createReportId(
         structure.monthlyReport.month,
         year,
@@ -125,7 +121,6 @@ export default function InfoHeader({
       const reportReq: ReportReq = {
         ReportID: reportId,
       };
-      console.log(JSON.stringify(reportReq));
 
       const response = await fetch(
         "https://ehsinformationapi.azure-api.net/EhsInfoSystem/GetMonthlyReport",
@@ -168,50 +163,72 @@ export default function InfoHeader({
     <div className="mx-auto">
       <h1 className="text-center">FMS EHS Input</h1>
       <div className="d-flex justify-content-center align-items-center">
-        <h3>Monat:</h3>
-        <select
-          className="form-select w-25 ms-3"
-          aria-label="Default select example"
-          onChange={handleMonthChange}
-          defaultValue={0}
-        >
-          <option>Monat auswählen</option>
-          <option value={Months.January}>Januar</option>
-          <option value={Months.February}>Februar</option>
-          <option value={Months.March}>März</option>
-          <option value={Months.April}>April</option>
-          <option value={Months.May}>Mai</option>
-          <option value={Months.June}>Juni</option>
-          <option value={Months.July}>Juli</option>
-          <option value={Months.August}>August</option>
-          <option value={Months.September}>September</option>
-          <option value={Months.October}>Oktober</option>
-          <option value={Months.November}>November</option>
-          <option value={Months.December}>Dezember</option>
-        </select>
-        <h3 className=" ms-3">{year}</h3>
-      </div>
-      <div className="d-flex justify-content-center align-items-center">
-        <h3 className="mb-0">Werk:</h3>
-        <select
-          className="form-select w-25 ms-3"
-          aria-label="Default select example"
-          onChange={handleChange}
-          defaultValue={""}
-        >
-          <option>Werk auswählen</option>
+        <table className="table w-25">
+          <tr>
+            <td>
+              <h3>Monat:</h3>
+            </td>
+            <td>
+              <select
+                className="form-select w-100 ms-3"
+                aria-label="Default select example"
+                onChange={handleMonthChange}
+                defaultValue={0}
+              >
+                <option>Monat auswählen</option>
+                <option value={Months.January}>Januar</option>
+                <option value={Months.February}>Februar</option>
+                <option value={Months.March}>März</option>
+                <option value={Months.April}>April</option>
+                <option value={Months.May}>Mai</option>
+                <option value={Months.June}>Juni</option>
+                <option value={Months.July}>Juli</option>
+                <option value={Months.August}>August</option>
+                <option value={Months.September}>September</option>
+                <option value={Months.October}>Oktober</option>
+                <option value={Months.November}>November</option>
+                <option value={Months.December}>Dezember</option>
+              </select>
+            </td>
+            <td>
+              <h3 className=" ms-4">{year}</h3>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h3 className="mb-0">Werk:</h3>
+            </td>
+            <td>
+              <select
+                className="form-select w-100 ms-3"
+                aria-label="Default select example"
+                onChange={handleChange}
+                defaultValue={""}
+              >
+                <option>Werk auswählen</option>
 
-          <option value={Werks.Hannover}>Hannover</option>
-          <option value={Werks.Garbsen}>Garbsen</option>
-          <option value={Werks.Wallbach}>Wallbach</option>
-          <option value={Werks.Malckay}>Malacky</option>
-          <option value={Werks.Japan}>Japan</option>
-          <option value={Werks.Charlotte}>Charlotte</option>
-          <option value={Werks.Huntersville}>Huntersville</option>
-          <option value={Werks.Lunderskov}>Lunderskov</option>
-          <option value={Werks.Pinghu}>Pinghu</option>
-          <option value={Werks.Shengyang}>Shenyang</option>
-        </select>
+                <option value={Werks.Hannover}>Hannover</option>
+                <option value={Werks.Garbsen}>Garbsen</option>
+                <option value={Werks.Wallbach}>Wallbach</option>
+                <option value={Werks.Malckay}>Malacky</option>
+                <option value={Werks.Japan}>Japan</option>
+                <option value={Werks.Charlotte}>Charlotte</option>
+                <option value={Werks.Huntersville}>Huntersville</option>
+                <option value={Werks.Lunderskov}>Lunderskov</option>
+                <option value={Werks.Pinghu}>Pinghu</option>
+                <option value={Werks.Shengyang}>Shenyang</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h3>Changed:</h3>
+            </td>
+            <td>
+              <h3 className="ms-3">22.5.2024 10:43:21</h3>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   );

@@ -16,6 +16,8 @@ namespace Company.Function.Monthly {
         public int month { get; set; }
         public int year { get; set;}
         public string werk { get; set; }
+        public string lastChangeDate { get; set; }
+        public string lastChangeTime { get; set; }
         public Health health { get; set; }
         public Safety safety { get; set; }
         public Energy energy { get; set; }
@@ -127,6 +129,8 @@ namespace Company.Function.Monthly {
                     month = data.month,
                     year = data.year,
                     werk = data.werk,
+                    lastChangeDate = data.lastChangeDate,
+                    lastChangeTime = data.lastChangeTime,
                     health = new Health {
                     labourHrs = data.health.labourHrs,
                     overtimeHrs = data.health.overtimeHrs,

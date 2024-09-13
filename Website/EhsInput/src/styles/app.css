@@ -1,8 +1,36 @@
 .logoSize {
-    width: 200px;
-    height: 200px;
+  width: 200px;
+  height: 200px;
 }
 
 .marginTopAll {
-    margin-top: 50px;
+  margin-top: 50px;
 }
+
+.scrollTable {
+  overflow-y: scroll;
+  height: 350px;
+}
+
+.width99 {
+  width: 99%;
+}
+
+#width33 tr td:nth-child(1) {
+  width: 33%;
+}
+
+.sticky-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0; 
+  background-color: white; 
+  z-index: 1000; 
+  padding: 2px 0; 
+}
+
+.scroll {
+  max-height: 55vh; 
+  overflow-y: scroll;
+}
+

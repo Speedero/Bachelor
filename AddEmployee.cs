@@ -28,7 +28,7 @@ namespace Company.Function.Employee {
         {
             _logger = logger;
             _cosmosClient = cosmosClient;
-            _container = _cosmosClient.GetContainer("EhsInfoSys", "EmpData"); // Container und Datenbankname spezifizieren
+            _container = _cosmosClient.GetContainer("EhsInfoSys", "EmpData");
         }
 
         [Function("AddEmployee")]

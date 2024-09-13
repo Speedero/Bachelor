@@ -1,5 +1,5 @@
-import { MonthlyReport } from "../models/MonthlyReport";
-import { Structure } from "../models/Structure";
+import { MonthlyReport } from "../../models/MonthlyReport";
+import { Structure } from "../../models/Structure";
 import createReportId from "./ReportIdCreate";
 
 interface SubmitButtonProps {
@@ -8,7 +8,7 @@ interface SubmitButtonProps {
 
 export default function SubmitButton({ structure }: SubmitButtonProps) {
   return (
-    <div className="mb-5">
+    <div className="my-4">
       <button
         type="submit"
         className="btn btn-primary btn-lg position-absolute start-50 translate-middle-x"
@@ -20,8 +20,16 @@ export default function SubmitButton({ structure }: SubmitButtonProps) {
   );
 }
 
+var setSystemTime = (report: MonthlyReport) => {
+  const now = new Date();
+  const current = now.toLocaleString().split(", ")
+  report.lastChangeDate = current[0];
+  report.lastChangeTime = current[1];
+}
+
 var handleSubmit = async (report: MonthlyReport) => {
   try {
+    setSystemTime(report);
     report.ReportID = createReportId(report.month, report.year, report.werk);
     console.log(report);
     const response = await fetch(

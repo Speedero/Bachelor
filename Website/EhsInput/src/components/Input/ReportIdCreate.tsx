@@ -1,5 +1,5 @@
-import { Months } from "../enums/Months";
-import { Werks } from "../enums/Werks";
+import { Months } from "../../enums/Months";
+import { Werks } from "../../enums/Werks";
 
 export default function createReportId(
   month: Months,

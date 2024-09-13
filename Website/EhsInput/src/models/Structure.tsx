@@ -117,6 +117,8 @@ export class Structure {
     werk: Werks.Hannover,
     month: Months.May,
     year: 2024,
+    lastChangeDate: "",
+    lastChangeTime: "",
     health: {
       labourHrs: Number(null),
       overtimeHrs: 0,

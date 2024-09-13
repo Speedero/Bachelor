@@ -1,19 +1,9 @@
 import InfoHeader from "./InfoHeader";
 import ListOfInput from "./ListOfInput";
 import SubmitButton from "./SubmitButton";
-import { Link } from "react-router-dom";
-import { Structure } from "../models/Structure";
-import "../styles/app.css";
-import { useState } from "react";
+import { Structure } from "../../models/Structure";
+import "../../styles/app.css";
 
-interface Employee {
-  id: string;
-  EmpID: string;
-  name: string;
-  email: string;
-  manager: boolean;
-  werks: string[];
-}
 export default function InputWebsite() {
   var structure = new Structure();
 
@@ -52,15 +42,15 @@ export default function InputWebsite() {
         src="forboLogo.jpg"
         alt="Forbo Logo"
       />
-      <div className="container centerText mt-4">
+      <div className="mx-3 centerText mt-4">
         <InfoHeader year={2024} structure={structure}/>
         <a
-          className="btn btn-secondary btn-lg mt-5 me-5 position-absolute top-0 end-0"
+          className="btn btn-secondary btn-lg mt-4 me-2 position-absolute top-0 end-0"
           href="/manage"
         >
           Manage
         </a>
-        <div className="mt-5">
+        <div className="mt-3 scroll">
           {ListInput.map((input, count) => (
             <ListOfInput
               names={input.names}

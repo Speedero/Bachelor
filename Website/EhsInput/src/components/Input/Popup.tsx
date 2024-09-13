@@ -1,4 +1,4 @@
-import "../styles/inputField.css";
+import "../../styles/inputField.css";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -20,9 +20,9 @@ export default function Popup() {
         <img src="frage.png" className="questionmark" alt="Question" />
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" centered>
         <Modal.Header closeButton>
-          <Modal.Title>Name der Komponente</Modal.Title>
+          <Modal.Title  id="contained-modal-title-vcenter">Name der Komponente</Modal.Title>
         </Modal.Header>
         <Modal.Body>Information über Komponente etc.</Modal.Body>
         
