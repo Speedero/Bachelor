@@ -6,6 +6,7 @@ import AddWerk from "./components/Werk/AddWerk/AddWerk";
 import EditWerk from "./components/Werk/EditWerk/EditWerk";
 import AddEmployee from "./components/Employee/AddEmployee/AddEmployee";
 import EditEmployee from "./components/Employee/EditEmployee/EditEmployee";
+import ChartPage from "./components/Charts/ChartPage"
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/editwerk" element={<EditWerk/>}/>
           <Route path="/addemployee" element={<AddEmployee/>}/>
           <Route path="/editemployee" element={<EditEmployee/>}/>
+          <Route path="/chart" element={<ChartPage/>}/>
         </Routes>
       </BrowserRouter>
       <Outlet />
