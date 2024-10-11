@@ -36,14 +36,17 @@ export default function InputWebsite() {
   ];
 
   return (
-    <>
-      <img
-        className="logoSize position-absolute top-0 start-0"
-        src="forboLogo.jpg"
-        alt="Forbo Logo"
-      />
+    <div id="mainpage">
+      <div id="mySidenav" className="sidenav">
+        <img className=" ms-3 logoSize " src="forboLogo.png" alt="Forbo Logo" />
+        <a href="#">Eingabe</a>
+        <a href="#">Manage</a>
+        <a href="#">Graphen</a>
+        <a href="#">Einstellungen</a>
+        <a href="#">FAQ</a>
+      </div>
       <div className="mx-3 centerText mt-4">
-        <InfoHeader year={2024} structure={structure}/>
+        <InfoHeader year={2024} structure={structure} />
         <a
           className="btn btn-secondary btn-lg mt-4 me-2 position-absolute top-0 end-0"
           href="/manage"
@@ -61,8 +64,12 @@ export default function InputWebsite() {
             />
           ))}
         </div>
-        <SubmitButton structure={structure} />
+        <div className="d-flex align-items-center justify-content-center ">
+          <div className="mx-auto">
+            <SubmitButton structure={structure} />
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -8,15 +8,13 @@ interface SubmitButtonProps {
 
 export default function SubmitButton({ structure }: SubmitButtonProps) {
   return (
-    <div className="my-4">
       <button
         type="submit"
-        className="btn btn-primary btn-lg position-absolute start-50 translate-middle-x"
+        className="btn btn-primary btn-lg my-4 text-center"
         onClick={() => handleSubmit(structure.monthlyReport)}
       >
         Submit
       </button>
-    </div>
   );
 }
 

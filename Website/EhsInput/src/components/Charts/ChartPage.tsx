@@ -8,7 +8,7 @@ import {
   PointElement,
   Legend,
   Tooltip,
-  Colors,
+  Title,
 } from "chart.js";
 
 Chartjs.register(
@@ -18,7 +18,7 @@ Chartjs.register(
   PointElement,
   Tooltip,
   Legend,
-  Colors
+  Title
 );
 
 export default function ChartPage() {
@@ -29,17 +29,17 @@ export default function ChartPage() {
       {
         label: "Sales of the Week",
         data: test,
-        backgroundColor: "blue",
-        borderColor: "#048ccc",
+        backgroundColor: "#048ccc80",
+        borderColor: "#048ccc80",
         pointStyle: "rect",
         pointRadius: 5,
         pointHoverRadius: 8,
       },
       {
         label: "Losses of the Week",
-        data: [2,4,8],
-        backgroundColor: "blue",
-        borderColor: "red",
+        data: [2, 4, 8],
+        backgroundColor: "#ff000080",
+        borderColor: "#ff000080",
         pointStyle: "rect",
         pointRadius: 5,
         pointHoverRadius: 8,
@@ -49,66 +49,94 @@ export default function ChartPage() {
 
   const options = {
     plugins: {
-      colors: {
-        enabled: true,
+      title: {
+        display: true,
+        text: "Health Stuff",
+        font: {
+          size: 30,
+        },
       },
     },
     scales: {
       y: {
-        // min: 3,
-        // max: 7,
         ticks: {
           stepSize: 1,
         },
       },
     },
+    responsive: true,
+    maintainAspectRatio: false,
   };
 
   /* Set the width of the side navigation to 250px */
-  const openNav = () => {
-    document.getElementById("mySidenav")!.style.width = "250px";
-    document.getElementById("root")!.style.marginLeft = "250px";
-    document.getElementById("mySidenav")!.style.display = "block";
-  };
-
-  /* Set the width of the side navigation to 0 */
-  const closeNav = () => {
-    document.getElementById("mySidenav")!.style.width = "0";
-    document.getElementById("root")!.style.marginLeft = "0";
-    document.getElementById("mySidenav")!.style.display = "none";
-    document.getElementById("left")!.style.width = "100%";
-    document.getElementById("right")!.style.width = "100%";
-    document.getElementById("left")!.style.height = "100%";
-    document.getElementById("right")!.style.height = "100%";
-    
-  };
 
   return (
-    <>
+    <div id="mainpage">
       <div id="mySidenav" className="sidenav">
-        <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
-          &times;
-        </a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+        <img className=" ms-3 logoSize " src="forboLogo.png" alt="Forbo Logo" />
+        <a href="#">Übersicht</a>
+        <a href="#">Gesundheit</a>
+        <a href="#">Sicherheit</a>
+        <a href="#">Energie</a>
+        <a href="#">Material</a>
+        <a href="#">Abfall</a>
       </div>
 
-      <span onClick={openNav} className="btn btn-secondary">
-        open
-      </span>
-
-      <h1>TEST CHART</h1>
-      <div className="d-flex">
-        <div className="h-50 w-50 d-inline-block">
-          <Line id="left" data={data} options={options}></Line>
+      <div className="ms-3 chartpagediv">
+        <h1 className="mt-2">TEST CHART</h1>
+        <div className="d-flex mt-3">
+          <h3 className="me-3">Werk auswählen:</h3>
+          <div className="w-50">
+            <select
+              className="form-select w-25 ms-3"
+              aria-label="Default select example"
+              defaultValue={""}
+            >
+              <option>Test</option>
+            </select>
+          </div>
         </div>
-        <div className="h-50 w-50 d-inline-block">
-          <Line id="right" data={data} options={options}></Line>
+        <div className="d-flex mt-3">
+          <div className="h-50 w-50 d-inline-block">
+            <Line
+              id="left"
+              className="h-100 w-100"
+              data={data}
+              options={options}
+            ></Line>
+          </div>
+          <div className="h-50 w-50 d-inline-block">
+            <Line
+              id="right"
+              className="h-100 w-100"
+              data={data}
+              options={options}
+            ></Line>
+          </div>
+          <aside></aside>
         </div>
-        <aside></aside>
+        <div className="mt-3 d-flex align-items-center">
+          <h3 className="me-3">Werk vergleichen:</h3>
+          <div className="d-inline-block width10">
+            <select
+              className="form-select"
+              aria-label="Default select example"
+              defaultValue={""}
+            >
+              <option>Test</option>
+            </select>
+          </div>
+          <div className="d-inline-block width10 ms-4">
+            <select
+              className="form-select"
+              aria-label="Default select example"
+              defaultValue={""}
+            >
+              <option>Test</option>
+            </select>
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
