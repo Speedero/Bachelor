@@ -36,7 +36,7 @@ export default function Werks() {
   return (
     <>
       <div className="d-inline-block w-50">
-        <h2>Werke</h2>
+        <h2>Plants</h2>
         <div className="scrollTable">
           <table className="table table-bordered table-hover" id="width33">
             <thead>

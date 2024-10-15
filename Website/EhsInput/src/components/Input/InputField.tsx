@@ -82,6 +82,7 @@ export default function ({ name, unit, category, structure}: InputProps) {
           onChange={handleInputChange}
           aria-describedby="basic-addon3 basic-addon4"
           value={inputValue}
+          min={0}
         ></input>
         <span className="input-group-text " id="basic-addon3">
           {unit}

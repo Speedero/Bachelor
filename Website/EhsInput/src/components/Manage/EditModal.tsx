@@ -26,7 +26,7 @@ export default function EditModal({ editname }: ModalProps) {
         variant=""
         onClick={handleShow}
       >
-        Add Werke
+        Add Plant
       </Button>
       
       <Modal

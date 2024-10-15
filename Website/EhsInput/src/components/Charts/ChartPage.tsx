@@ -10,6 +10,8 @@ import {
   Tooltip,
   Title,
 } from "chart.js";
+import Sidebar from "../Sidebar";
+import { useEffect, useState } from "react";
 
 Chartjs.register(
   LineElement,
@@ -22,13 +24,14 @@ Chartjs.register(
 );
 
 export default function ChartPage() {
-  const test = [3, 4, 7];
+  var test = [3, 4, 7];
+  const [values, setValues] = useState(test);
   const data = {
     labels: ["Mon", "Tue", "Wed"],
     datasets: [
       {
         label: "Sales of the Week",
-        data: test,
+        data: values,
         backgroundColor: "#048ccc80",
         borderColor: "#048ccc80",
         pointStyle: "rect",
@@ -67,27 +70,29 @@ export default function ChartPage() {
     responsive: true,
     maintainAspectRatio: false,
   };
-
-  /* Set the width of the side navigation to 250px */
+  const changeData = () => {
+    setValues([10, 5, 8]);
+  };
 
   return (
     <div id="mainpage">
-      <div id="mySidenav" className="sidenav">
-        <img className=" ms-3 logoSize " src="forboLogo.png" alt="Forbo Logo" />
-        <a href="#">Übersicht</a>
-        <a href="#">Gesundheit</a>
-        <a href="#">Sicherheit</a>
-        <a href="#">Energie</a>
-        <a href="#">Material</a>
-        <a href="#">Abfall</a>
-      </div>
+      <Sidebar
+        inputOpen={false}
+        chartOpen={true}
+        manageOpen={false}
+        activeSection=""
+      />
 
       <div className="ms-3 chartpagediv">
         <h1 className="mt-2">TEST CHART</h1>
+        <a className="btn btn-primary" onClick={changeData}>
+          CHANGE DATA
+        </a>
         <div className="d-flex mt-3">
           <h3 className="me-3">Werk auswählen:</h3>
           <div className="w-50">
             <select
+              id="selWerk"
               className="form-select w-25 ms-3"
               aria-label="Default select example"
               defaultValue={""}
@@ -119,6 +124,7 @@ export default function ChartPage() {
           <h3 className="me-3">Werk vergleichen:</h3>
           <div className="d-inline-block width10">
             <select
+              id="selWerk1"
               className="form-select"
               aria-label="Default select example"
               defaultValue={""}
@@ -128,6 +134,7 @@ export default function ChartPage() {
           </div>
           <div className="d-inline-block width10 ms-4">
             <select
+              id="selWerk2"
               className="form-select"
               aria-label="Default select example"
               defaultValue={""}

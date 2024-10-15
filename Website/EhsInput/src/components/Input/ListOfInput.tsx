@@ -17,10 +17,10 @@ export default function ListOfInput({
 }: ListInputProps) {
   return (
     <div className="width99">
-      <h2 className="mt-3 sticky-header">{header}</h2>
+      <h2 className="mt-3 sticky-header" id={header}>{header}</h2>
       <div className="row">
         {names.map((name, index) => (
-          <div className="col-12 col-md-6 mb-3" key={name}>
+          <div className="col-12 col-md-6 mb-3" id={name}>
             <InputField
               name={name}
               unit={units[index]}
