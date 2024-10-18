@@ -118,5 +118,17 @@
 .rotatingimg {
   height: 18px;
   width: 18px;
+  transition: transform 0.5s ease;
+  cursor: pointer;
 }
+
+.rotateleft {
+  transform: rotate(-90deg);
+}
+
+.rotateup {
+  transform: rotate(0deg);
+}
+
+
 

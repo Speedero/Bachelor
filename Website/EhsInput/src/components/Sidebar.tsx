@@ -29,6 +29,24 @@ export default function Sidebar({
     setManageVis(!managetVis);
   };
 
+  var GetURLParameter = (sParam: string) => {
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split("&");
+    for (var i = 0; i < sURLVariables.length; i++) {
+      var sParameterName = sURLVariables[i].split("=");
+      if (sParameterName[0] == sParam) {
+        return sParameterName[1].replace("%20", " ");
+      }
+    }
+  };
+
+  const selectChartTopic = (name: string) => {
+    const topic = GetURLParameter("topic");
+    if (topic === name) return "active";
+    return "";
+  }
+
+
   return (
     <div id="mySidenav" className="sidenav">
       <img className="ms-3 logoSize" src="forboLogo.png" alt="Forbo Logo" />
@@ -98,29 +116,29 @@ export default function Sidebar({
         </div>
       )}
       <div className="d-flex align-items-center ">
-        <a href="/chart" className="sidenavA">
+        <a href="/chart?topic=overview" className="sidenavA">
           Graphen
         </a>
         <RotatingImage isRotated={chartVis} setRotated={toggleChart} />
       </div>
       {chartVis && (
         <div className="subdiv">
-          <a href="/chart" className="ms-4 sidenavASub">
+          <a href="/chart?topic=overview" className={`ms-4 ${selectChartTopic("overview")} sidenavASub`}>
             Übersicht
           </a>
-          <a href="/chart" className="ms-4 sidenavASub">
+          <a href="/chart?topic=health" className={`ms-4 ${selectChartTopic("health")} sidenavASub`}>
             Gesundheit
           </a>
-          <a href="/chart" className="ms-4 sidenavASub">
+          <a href="/chart?topic=safety" className={`ms-4 ${selectChartTopic("safety")} sidenavASub`}>
             Sicherheit
           </a>
-          <a href="/chart" className="ms-4 sidenavASub">
+          <a href="/chart?topic=energy" className={`ms-4 ${selectChartTopic("energy")} sidenavASub`}>
             Energie
           </a>
-          <a href="/chart" className="ms-4 sidenavASub">
+          <a href="/chart?topic=material" className={`ms-4 ${selectChartTopic("material")} sidenavASub`}>
             Material
           </a>
-          <a href="/chart" className="ms-4 sidenavASub">
+          <a href="/chart?topic=waste" className={`ms-4 ${selectChartTopic("waste")} sidenavASub`}>
             Abfall
           </a>
         </div>

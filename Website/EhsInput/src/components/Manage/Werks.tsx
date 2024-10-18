@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import EditModal from "./EditModal";
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
@@ -15,7 +15,7 @@ export default function Werks() {
     "DE08",
     "DE09",
   ];
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -41,9 +41,9 @@ export default function Werks() {
           <table className="table table-bordered table-hover" id="width33">
             <thead>
               <tr>
+                <th>Site Code</th>
                 <th>Name</th>
                 <th>Country</th>
-                <th>Site Code</th>
               </tr>
             </thead>
             <tbody>
@@ -100,7 +100,6 @@ export default function Werks() {
                       className="form-control"
                       id="Nachname"
                       aria-describedby="basic-addon3 basic-addon4"
-                      // value=""
                     ></input>
                   </div>
                 </div>
@@ -113,7 +112,6 @@ export default function Werks() {
                       className="form-control"
                       id="EMail"
                       aria-describedby="basic-addon3 basic-addon4"
-                      // value=""
                     ></input>
                   </div>
                 </div>

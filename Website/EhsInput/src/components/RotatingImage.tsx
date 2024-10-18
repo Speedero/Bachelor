@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import "../styles/app.css"
 
 interface inputProp {
   isRotated: boolean;
@@ -15,15 +16,10 @@ export default function RotatingImage({ isRotated, setRotated }: inputProp) {
   return (
     <div>
       <img
-        className="rotatingimg"
+        className={`rotatingimg ${isRotated ? "rotateleft" : "rotateup"}`}
         src="chevronleft.png" // Pfad zu deinem Bild
         alt="Chevron by Dave Gandy"
         onClick={handleImageClick}
-        style={{
-          transform: isRotated ? "rotate(-90deg)" : "rotate(0deg)",
-          transition: "transform 0.5s ease", // Smooth rotation
-          cursor: "pointer", // Zeigt an, dass das Bild klickbar ist
-        }}
       />
     </div>
   );
